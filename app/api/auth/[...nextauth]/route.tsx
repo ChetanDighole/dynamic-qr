@@ -8,6 +8,7 @@ import type { User as NextAuthUser } from "next-auth";
 declare module "next-auth" {
   interface Session {
     user: {
+      url: string;
       id: string;
       name?: string | null;
       email?: string | null;
@@ -63,6 +64,7 @@ const authHandler = NextAuth({
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
+        token.url = user.url;
       }
       return token;
     },
@@ -71,6 +73,7 @@ const authHandler = NextAuth({
         session.user.id = token.id as string;
         session.user.name = token.name;
         session.user.email = token.email;
+        session.user.url = token.url as string;
       }
       return session;
     },

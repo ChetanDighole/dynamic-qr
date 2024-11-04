@@ -6,6 +6,10 @@ import { useRouter } from "next/navigation";
 export default function Dashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const handleSignout = async () => {
+    await signOut({ redirect: false });
+    router.push("/");
+  };
 
   if (status === "unauthenticated") {
     router.push("/signin");
@@ -19,7 +23,15 @@ export default function Dashboard() {
   }
   return (
     <div>
-      <h1>hello world Dashboard</h1>
+      <div className="flex justify-between items-center">
+        <div>Welcome {session?.user.name}</div>
+        <button
+          className="p-2 border border-black"
+          onClick={() => handleSignout()}
+        >
+          sign out
+        </button>
+      </div>
     </div>
   );
 }

@@ -44,6 +44,7 @@ export default function signup() {
                 password: ""
             })
         }
+        router.push('/signin');
     }
 
 
