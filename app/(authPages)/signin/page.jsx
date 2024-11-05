@@ -1,5 +1,5 @@
 'use client';
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -36,7 +36,11 @@ export default function signin() {
             });
             setErrorState(true);
         } else {
-            router.push("/dashboard");
+
+            const session = await getSession()
+            const userId = session?.user.id
+
+            router.push(`/dashboard/${userId}`);
             setErrorState(false);
         }
     };

@@ -1,37 +1,20 @@
 "use client";
 
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export default function Dashboard() {
-  const { data: session, status } = useSession();
+export default function DashboardRedirect() {
+  const { data: session } = useSession(); // Get the session data directly
   const router = useRouter();
-  const handleSignout = async () => {
-    await signOut({ redirect: false });
-    router.push("/");
-  };
 
-  if (status === "unauthenticated") {
-    router.push("/signin");
-    return;
-  } else if (status === "loading") {
-    return (
-      <div className="w-full h-screen flex items-center justify-center dark:text-white dark:bg-gray-800">
-        Loading...
-      </div>
-    );
-  }
-  return (
-    <div>
-      <div className="flex justify-between items-center">
-        <div>Welcome {session?.user.name}</div>
-        <button
-          className="p-2 border border-black"
-          onClick={() => handleSignout()}
-        >
-          sign out
-        </button>
-      </div>
-    </div>
-  );
+  useEffect(() => {
+    if (session?.user?.id) {
+      router.push(`/dashboard/${session.user.id}`);
+    } else {
+      router.push("/signin");
+    }
+  }, [session, router]);
+
+  return null;
 }
