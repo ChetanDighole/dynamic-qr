@@ -1,5 +1,5 @@
 "use client";
-
+import DashboardTable from "@/components/DashboardTable";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter, useParams } from "next/navigation";
 import { QRCodeCanvas } from "qrcode.react";
@@ -153,6 +153,12 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+
+        {/* table starts */}
+        <div className="w-full overflow-auto">
+          <DashboardTable id={Number(id)} />
+        </div>
+        {/* table ends */}
       </div>
     </div>
   );
