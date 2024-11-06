@@ -1,20 +1,32 @@
-"use client";
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
+import { authOption } from "@/app/api/auth/[...nextauth]/route";
+import { PrismaClient } from "@prisma/client";
 
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+type SessionType = {
+  user: {
+    id: string;
+    name?: string;
+    email?: string;
+  };
+};
 
-export default function DashboardRedirect() {
-  const { data: session } = useSession(); // Get the session data directly
-  const router = useRouter();
+const prisma = new PrismaClient();
 
-  useEffect(() => {
-    if (session?.user?.id) {
-      router.push(`/dashboard/${session.user.id}`);
-    } else {
-      router.push("/signin");
-    }
-  }, [session, router]);
+export default async function DashboardRedirect() {
+  const session = (await getServerSession(authOption)) as SessionType;
+
+  const userData = await prisma.user.findUnique({
+    where: {
+      email: session?.user.email,
+    },
+  });
+
+  if (userData) {
+    redirect(`/dashboard/${userData?.id}`);
+  } else {
+    redirect("/signin");
+  }
 
   return null;
 }

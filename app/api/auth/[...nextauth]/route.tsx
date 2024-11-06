@@ -1,9 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
 import NextAuth from "next-auth";
 import bcrypt from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from "@prisma/client";
-import type { User as NextAuthUser } from "next-auth";
 
 declare module "next-auth" {
   interface Session {
@@ -80,4 +78,6 @@ const authHandler = NextAuth({
   },
 });
 
-export { authHandler as POST, authHandler as GET };
+const authOption = NextAuth(authHandler);
+
+export { authHandler as POST, authHandler as GET, authOption };

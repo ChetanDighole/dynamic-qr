@@ -62,7 +62,7 @@ export default function Dashboard() {
   async function getQRUrl() {
     const fullUrl = typeof window !== "undefined" ? window.location.href : "";
     const baseUrl = fullUrl ? new URL(fullUrl).origin : "";
-    const scanUrl = `${baseUrl}/qr/${id}`;
+    const scanUrl = `${baseUrl}/qrcode/${id}`;
     setQrurl(scanUrl);
   }
 
