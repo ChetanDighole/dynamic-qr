@@ -17,6 +17,10 @@ interface UserData {
 
 export default function DashboardTable({ id }: User) {
   const [data, setData] = useState<UserData[]>([]);
+  const [userCount, setUserCount] = useState({
+    allUser: "",
+    uniqueUser: "",
+  });
 
   useEffect(() => {
     getData();
@@ -25,13 +29,32 @@ export default function DashboardTable({ id }: User) {
   async function getData() {
     const res = await fetch(`/api/userdata/${id}`);
     const dataRes = await res.json();
-    console.log(dataRes.userData);
     setData(dataRes.userData);
+
+    const uniqueUser = new Set(
+      dataRes.userData.map((eachEle: any) => eachEle.ip)
+    );
+
+    console.log(uniqueUser.size);
+    setUserCount({
+      allUser: dataRes.userData.length,
+      uniqueUser: `${uniqueUser.size}`,
+    });
+
+    console.log(userCount);
   }
 
   return (
-    <div className="w-full">
-      <table className="min-w-full bg-white shadow-md rounded-lg">
+    <>
+      <div className="flex items-center justify-center space-x-4 mb-4">
+        <div className="bg-red-500 text-white font-semibold px-4 py-2 rounded-md shadow-md">
+          All Users: {userCount.allUser}
+        </div>
+        <div className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md shadow-md">
+          Unique Users: {userCount.uniqueUser}
+        </div>
+      </div>
+      <table className="min-w-full h-full bg-white shadow-md rounded-lg">
         <thead className="bg-gray-200 text-gray-600">
           <tr>
             <th className="px-4 py-2 text-center">Sr. No.</th>
@@ -53,6 +76,6 @@ export default function DashboardTable({ id }: User) {
           ))}
         </tbody>
       </table>
-    </div>
+    </>
   );
 }

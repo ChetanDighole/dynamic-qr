@@ -30,7 +30,11 @@ export async function GET(req: NextRequest) {
       where: { id: Number(id) },
     });
 
-    const redirectUrl = user?.url;
+    let redirectUrl = user?.url;
+
+    if (redirectUrl && !/^https?:\/\//i.test(redirectUrl)) {
+      redirectUrl = `https://${redirectUrl}`;
+    }
 
     return NextResponse.redirect(redirectUrl!);
   } catch (error) {
