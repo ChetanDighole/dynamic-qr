@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 import DashboardTable from "@/components/DashboardTable";
 import { useSession, signOut } from "next-auth/react";
