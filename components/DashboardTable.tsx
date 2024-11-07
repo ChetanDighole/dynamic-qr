@@ -40,8 +40,6 @@ export default function DashboardTable({ id }: User) {
       allUser: dataRes.userData.length,
       uniqueUser: `${uniqueUser.size}`,
     });
-
-    console.log(userCount);
   }
 
   return (

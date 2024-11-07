@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 
-export default function signin() {
+export default function Signin() {
     const router = useRouter();
     const [errorState, setErrorState] = useState(false);
     const [user, setUser] = useState({
