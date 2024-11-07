@@ -82,4 +82,3 @@ const authHandler = NextAuth({
 const authOption = NextAuth(authHandler);
 
 export { authHandler as POST, authHandler as GET, authOption };
-export default authHandler;
