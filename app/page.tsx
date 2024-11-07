@@ -43,7 +43,7 @@ export default function Home() {
         </h1>
         <p className="text-lg text-gray-600 mt-2">
           Generate QR codes that you can update with any URL at any time,
-          without changing the code itself 🔄.
+          without changing the QR code itself 🔄.
         </p>
       </div>
 
