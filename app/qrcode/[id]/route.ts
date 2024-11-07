@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
     const data = await loc.json();
     // const data = dataJson.data;
 
-    const userData = await prisma.userData.create({
+    await prisma.userData.create({
       data: {
         ip,
         city: data.city,
@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
     }
 
     return NextResponse.redirect(redirectUrl!);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { message: "catch at qrcode route", succuss: false },
       { status: 401 }

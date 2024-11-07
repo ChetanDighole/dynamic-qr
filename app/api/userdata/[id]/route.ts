@@ -28,7 +28,7 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json({ userData });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { message: "catch at userData route", success: false },
       {

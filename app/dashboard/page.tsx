@@ -1,7 +1,8 @@
 import { getServerSession } from "next-auth/next";
-import { authOption } from "@/app/api/auth/[...nextauth]/route";
+// import { authOption } from "@/app/api/auth/[...nextauth]/route";
 import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
+import authHandler from "@/app/api/auth/[...nextauth]/route";
 
 type SessionType = {
   user: {
@@ -32,13 +33,13 @@ async function getRedirectUrl(session: SessionType | null) {
       console.error("User not found in database.");
       return "/signin";
     }
-  } catch (error) {
+  } catch {
     return "/signin";
   }
 }
 
 export default async function DashboardRedirect() {
-  const session = (await getServerSession(authOption)) as SessionType;
+  const session = (await getServerSession(authHandler)) as SessionType;
 
   const redirectUrl = await getRedirectUrl(session);
   return redirect(redirectUrl);
