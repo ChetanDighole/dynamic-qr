@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { QRCodeCanvas } from "qrcode.react";
 import { useRef, useState } from "react";
 
@@ -7,6 +8,8 @@ export default function Home() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [url, setUrl] = useState("");
   const qrRef = useRef<HTMLDivElement>(null);
+
+  const router = useRouter();
 
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
@@ -51,10 +54,16 @@ export default function Home() {
           👇.
         </p>
         <div className="flex justify-center space-x-4 mb-4">
-          <button className="px-6 py-2 text-white bg-blue-600 rounded-md">
+          <button
+            className="px-6 py-2 text-white bg-blue-600 rounded-md"
+            onClick={() => router.push("/signup")}
+          >
             Sign Up ✨
           </button>
-          <button className="px-6 py-2 text-white bg-green-600 rounded-md">
+          <button
+            className="px-6 py-2 text-white bg-green-600 rounded-md"
+            onClick={() => router.push("/signin")}
+          >
             Sign In 🔑
           </button>
         </div>

@@ -127,6 +127,15 @@ export default function signup() {
                                 >
                                     Sign Up
                                 </button>
+                                <div className="text-sm font-medium text-gray-500 dark:text-gray-400 text-center">
+                                    Already have an account?{" "}
+                                    <span
+                                        onClick={() => router.push("/signin")}
+                                        className="text-blue-600 hover:underline dark:text-blue-500 cursor-pointer"
+                                    >
+                                        Sign in here
+                                    </span>
+                                </div>
                                 <div
                                     className="text-slate-400 text-center underline underline-offset-2 cursor-pointer"
                                     onClick={() => router.push("/")}
