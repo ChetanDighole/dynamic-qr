@@ -186,7 +186,9 @@ export default function Dashboard() {
         {/* QR Code and Controls Section */}
         <div className="py-8 px-4 flex flex-col items-center justify-center gap-6">
           <div ref={qrRef}>
-            <QRCodeCanvas value={`${qrurl}`} bgColor="#00000000" />
+            {!user?.url ? null : (
+              <QRCodeCanvas value={`${qrurl}`} bgColor="#00000000" />
+            )}
           </div>
           <div>{user?.url}</div>
 

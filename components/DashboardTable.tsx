@@ -50,17 +50,17 @@ export default function DashboardTable({ id }: User) {
       <div className="sticky top-0 z-10 bg-white py-4 shadow-md">
         <div className="flex items-center justify-center space-x-4">
           <div className="bg-red-500 text-white font-semibold px-4 py-2 rounded-md shadow-md">
-            All Users: {userCount.allUser}
+            Total Scans: {userCount.allUser}
           </div>
           <div className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md shadow-md">
-            Unique Users: {userCount.uniqueUser}
+            Unique Scans: {userCount.uniqueUser}
           </div>
         </div>
       </div>
 
       {/* Scrollable Table Container */}
       <div className="flex-1 overflow-y-auto mt-4">
-        <table className="min-w-full h-full bg-white shadow-md rounded-lg">
+        <table className="min-w-full max-h-full bg-white shadow-md rounded-lg">
           <thead className="bg-gray-200 text-gray-600">
             <tr>
               <th className="px-4 py-2 text-center">Sr. No.</th>
