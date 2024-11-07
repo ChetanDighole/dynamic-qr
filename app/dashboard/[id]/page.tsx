@@ -165,7 +165,14 @@ export default function Dashboard() {
     <div className="min-h-screen lg:h-screen w-full lg:overflow-hidden flex flex-col">
       {/* Header Section */}
       <div className="flex justify-between items-center border-b-2 p-4">
-        <div>Welcome {session?.user.name}</div>
+        <div>
+          <span className="text-black font-semibold text-lg md:text-xl lg:text-2xl">
+            Welcome{" "}
+          </span>
+          <span className="text-purple-500 font-bold capitalize text-lg md:text-xl lg:text-2xl">
+            {session?.user.name}
+          </span>
+        </div>
         <button
           className="p-2 border border-black"
           onClick={() => handleSignout()}
