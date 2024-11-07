@@ -31,7 +31,13 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-    getUserData();
+    const timer = setTimeout(() => {
+      getUserData();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [newUrl]);
 
   //functions
