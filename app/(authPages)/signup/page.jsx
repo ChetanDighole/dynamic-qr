@@ -36,6 +36,7 @@ export default function Signup() {
 
         if (!data.success) {
             setError(data.message)
+            return
         } else {
             setError('')
             setUser({
