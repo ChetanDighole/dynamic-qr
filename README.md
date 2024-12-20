@@ -19,10 +19,8 @@ The **Dynamic QR Application** is a powerful tool designed to generate dynamic Q
 
 ## Tech Stack
 
-- **Frontend:** React.js for a dynamic and responsive user interface.
-- **Backend:** Node.js with Express.js for handling server-side operations.
-- Database: postgresql using prisma as ORM
-- **API Integration:** RESTful APIs for QR generation and analytics.
+- **Framework:** Next js.
+- **Database:** postgresql using prisma as ORM.
 - **Styling:** Tailwind CSS for modern and customizable design.
 
 ## How to Use
