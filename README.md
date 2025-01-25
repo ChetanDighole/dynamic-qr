@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dynamic QR Application
 
-## Getting Started
+## Overview
 
-First, run the development server:
+The **Dynamic QR Application** is a powerful tool designed to generate dynamic QR codes that can be updated without altering the physical QR code itself. This functionality makes it an essential solution for businesses looking to streamline their operations, enhance customer engagement, and save costs on reprinting materials.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Editable QR Codes:** Update the linked content in real-time without changing the QR code.
+- **Analytics Tracking:** Monitor scans, location, and device statistics for data-driven decision-making.
+- **Ease of Integration:** Simple process to create and deploy QR codes for business use.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How It’s Useful for Businesses
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Marketing Campaigns:** Businesses can update promotions or offers dynamically, keeping campaigns fresh without needing to reprint marketing materials.
+2. **Inventory Management:** Use QR codes to track inventory or redirect to updated product pages effortlessly.
+3. **Enhanced Customer Experience:** Allow users to access updated menus, catalogs, or event details instantly.
+4. **Cost-Effective:** Eliminate the need for reprinting QR codes whenever information changes.
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework:** Next js.
+- **Database:** postgresql using prisma as ORM.
+- **Styling:** Tailwind CSS for modern and customizable design.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How to Use
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Sign Up:** Create an account to access the dashboard.
+2. **Generate QR Code:** Enter the URL  and generate a dynamic QR code.
+3. **Update Content:** Modify the linked content anytime from the dashboard, and the changes reflect instantly.
+4. **Track Analytics:** View detailed statistics about your QR code's performance.
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The app is hosted on [dynamicqrcode.vercel.app](https://dynamicqrcode.vercel.app/) ensuring fast and reliable access for users.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
