@@ -7,6 +7,7 @@ import { useState } from "react";
 export default function Signin() {
     const router = useRouter();
     const [errorState, setErrorState] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -23,25 +24,32 @@ export default function Signin() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await signIn("credentials", {
-            redirect: false,
-            email: user.email,
-            password: user.password
-        });
-
-        if (res?.error) {
-            setUser({
-                email: "",
-                password: ""
+        setIsLoading(true)
+        try {
+            const res = await signIn("credentials", {
+                redirect: false,
+                email: user.email,
+                password: user.password
             });
-            setErrorState(true);
-        } else {
 
-            const session = await getSession()
-            const userId = session?.user.id
+            if (res?.error) {
+                setUser({
+                    email: "",
+                    password: ""
+                });
+                setErrorState(true);
+            } else {
 
-            router.push(`/dashboard/${userId}`);
-            setErrorState(false);
+                const session = await getSession()
+                const userId = session?.user.id
+
+                router.push(`/dashboard/${userId}`);
+                setErrorState(false);
+            }
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setIsLoading(false)
         }
     };
 
@@ -102,13 +110,16 @@ export default function Signin() {
 
                                 <button
                                     type="button"
-                                    className="w-full text-white bg-blue-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                    className="w-full flex items-center justify-center gap-2 text-white bg-blue-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                                     onClick={(e) => handleSubmit(e)}
                                 >
-                                    Sign In
+                                    {
+                                        isLoading ? <><svg className="size-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                            <span>Sign In</span></> : <span>Sign In</span>
+                                    }
                                 </button>
                                 <div className="text-sm font-medium text-gray-500 dark:text-gray-400 text-center">
-                                    Don&apos;t have an account?
+                                    Don&apos;t have an account? {" "}
                                     <span
                                         onClick={() => router.push("/signup")}
                                         className="text-blue-600 hover:underline dark:text-blue-500 cursor-pointer"
